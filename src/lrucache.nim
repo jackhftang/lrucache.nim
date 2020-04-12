@@ -36,9 +36,12 @@ proc addNewNode[K,T](cache: LRUCache[K,T], key: K, val: T) =
   # remove old node if exceed capacity
   cache.resize()
 
-proc capacity*[K,T](cache: LRUCache[K,T]): int = cache.capacity
+proc capacity*[K,T](cache: LRUCache[K,T]): int = 
+  ## Get the maximum capacity of cache
+  cache.capacity
 
 proc `capacity=`*[K,T](cache: LRUCache[K,T], capacity: int) = 
+  ## Resize the maximum capacity of cache
   cache.capacity = capacity
   cache.resize()
 
@@ -64,6 +67,7 @@ proc del*[K,T](cache: LRUCache[K,T], key: K) =
     cache.list.remove(node)
 
 proc clear*[K,T](cache: LRUCache[K,T]) =
+  ## remove all items
   cache.list = initDoublyLinkedList[Node[K,T]]()
   cache.table.clear()
 

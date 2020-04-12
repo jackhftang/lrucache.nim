@@ -7,5 +7,8 @@
     "tokenRef": "GITHUB_TOKEN",
     "assets": "tusc*",
     "timeout": 0
+  },
+  "hooks": {
+    "before:beforeBump": "nimble docgen"
   }
 }
