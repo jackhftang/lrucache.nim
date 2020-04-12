@@ -4,9 +4,14 @@ The standard implemenation of LRU cache (hash table + doubly-linked list).
 All operations are in time complexity of O(1).
 This implementation is *not* thread-safe.
 
+
+## API
+
+See [here](https://jackhftang.github.io/lrucache/)
+
 ## Usage
 
-```
+```nim
 # create a new LRU cache with initial capacity of 1 items
 let cache = newLRUCache[int, string](1) 
 
