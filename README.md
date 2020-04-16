@@ -4,6 +4,11 @@ The standard implemenation of LRU cache (hash table + doubly-linked list).
 All operations are in time complexity of O(1).
 This implementation is *not* thread-safe.
 
+## Installation
+
+```
+$ nimble install lrucache
+```
 
 ## API
 
