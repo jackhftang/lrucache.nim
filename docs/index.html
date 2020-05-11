@@ -139,6 +139,8 @@ function main() {
     title="getOrDefault[K, T](cache: LRUCache[K, T]; key: K; val: T): T"><wbr />get<wbr />Or<wbr />Default<span class="attachedType">LRUCache</span></a></li>
   <li><a class="reference" href="#getOrPut%2CLRUCache%5BK%2CT%5D%2CK%2CT"
     title="getOrPut[K, T](cache: LRUCache[K, T]; key: K; val: T): T"><wbr />get<wbr />Or<wbr />Put<span class="attachedType">LRUCache</span></a></li>
+  <li><a class="reference" href="#getOption%2CLRUCache%5BK%2CT%5D%2CK"
+    title="getOption[K, T](cache: LRUCache[K, T]; key: K): Option[T]"><wbr />get<wbr />Option<span class="attachedType">LRUCache</span></a></li>
   <li><a class="reference" href="#isEmpty%2CLRUCache%5BK%2CT%5D"
     title="isEmpty[K, T](cache: LRUCache[K, T]): bool"><wbr />is<wbr />Empty<span class="attachedType">LRUCache</span></a></li>
   <li><a class="reference" href="#isFull%2CLRUCache%5BK%2CT%5D"
@@ -271,6 +273,13 @@ Similar to get, but return <tt class="docutils literal"><span class="pre">val</s
 Similar to <tt class="docutils literal"><span class="pre">get</span></tt>, but put and return <tt class="docutils literal"><span class="pre">val</span></tt> if <tt class="docutils literal"><span class="pre">key</span></tt> is not in <tt class="docutils literal"><span class="pre">cache</span></tt>
 
 </dd>
+<a id="getOption,LRUCache[K,T],K"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#getOption%2CLRUCache%5BK%2CT%5D%2CK"><span class="Identifier">getOption</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LRUCache"><span class="Identifier">LRUCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">K</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span></pre></dt>
+<dd>
+
+Similar to <tt class="docutils literal"><span class="pre">get</span></tt>, but return <tt class="docutils literal"><span class="pre">None</span></tt> if <tt class="docutils literal"><span class="pre">key</span></tt> is not in <tt class="docutils literal"><span class="pre">cache</span></tt> or else return <tt class="docutils literal"><span class="pre">Some(value)</span></tt> and update recentness
+
+</dd>
 <a id="isEmpty,LRUCache[K,T]"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#isEmpty%2CLRUCache%5BK%2CT%5D"><span class="Identifier">isEmpty</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LRUCache"><span class="Identifier">LRUCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
@@ -295,7 +304,7 @@ Equivalent to <tt class="docutils literal"><span class="pre">cache.len == cache.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-05-07 16:09:57 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-05-11 10:11:40 UTC</small>
       </div>
     </div>
   </div>
