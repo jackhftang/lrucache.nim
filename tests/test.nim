@@ -1,4 +1,4 @@
-import unittest
+import unittest, options
 import lrucache
 
 suite "LRUCache":
@@ -84,6 +84,12 @@ suite "LRUCache":
     let cache = newLRUCache[int, int](2)
     check: cache.getOrPut(1,1) == 1
     check: 1 in cache
+
+  test "getOption()":
+    let cache = newLRUCache[int,int](1)
+    check: cache.getOption(1).isNone
+    cache[1] = 1
+    check: cache.getOption(1) == some(1)
 
   test "isEmpty":
     let cache = newLRUCache[int, int](2)

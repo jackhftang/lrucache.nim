@@ -1,4 +1,4 @@
-import lists, tables 
+import lists, tables, options
 
 type
   # no need to use ref, since DoublyLinkedNode is already a ref
@@ -118,6 +118,13 @@ proc getOrPut*[K,T](cache: LRUCache[K,T], key: K, val: T): T =
   else:
     result = val
     cache.addNewNode(key, val)
+
+proc getOption*[K,T](cache: LRUCache[K,T], key: K): Option[T] =
+  ## Similar to `get`, but return `None` if `key` is not in `cache` 
+  ## or else return `Some(value)` and update recentness
+  let node = cache.table.getOrDefault(key, nil)
+  if node.isNil: none(T)
+  else: some(node.value.val)
 
 proc isEmpty*[K,T](cache: LRUCache[K,T]): bool = 
   ## Equivalent to `cache.len == 0`
