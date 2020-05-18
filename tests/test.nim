@@ -1,10 +1,10 @@
 import unittest, options
 import lrucache
 
-suite "LRUCache":
+suite "LruCache":
 
   test "put, get, del":
-    let cache = newLRUCache[int, int](100)
+    let cache = newLruCache[int, int](100)
 
     # put
     for i in 1..10: cache[i] = i
@@ -18,7 +18,7 @@ suite "LRUCache":
     check: cache.len == 0
       
   test "remove items if capacity exceeded":
-    let cache = newLRUCache[int, int](5)
+    let cache = newLruCache[int, int](5)
 
     # put
     for i in 1..10: cache[i] = i
@@ -31,7 +31,7 @@ suite "LRUCache":
       check: i in cache 
 
   test "remvoe least recently used item if capacity exceeded":
-    let cache = newLRUCache[int, int](2)
+    let cache = newLruCache[int, int](2)
     cache[1] = 1
     cache[2] = 2
     cache[3] = 3
@@ -48,7 +48,7 @@ suite "LRUCache":
     check: 3 notin cache
 
   test "peek should not update recentness":
-    let cache = newLRUCache[int, int](2)
+    let cache = newLruCache[int, int](2)
     cache[1] = 1
     cache[2] = 2
 
@@ -61,7 +61,7 @@ suite "LRUCache":
     check: 3 in cache
 
   test "[]= should update recentness":
-    let cache = newLRUCache[int, int](2)
+    let cache = newLruCache[int, int](2)
     cache[1] = 1
     cache[2] = 2
 
@@ -74,37 +74,37 @@ suite "LRUCache":
     check: 3 in cache
 
   test "getOrDefault()": 
-    let cache = newLRUCache[int, int](2)
+    let cache = newLruCache[int, int](2)
     check: cache.getOrDefault(1,1) == 1
     check: 1 notin cache
     cache[1] = 2
     check: cache.getOrDefault(1,1) == 2
 
   test "getOrPut()":
-    let cache = newLRUCache[int, int](2)
+    let cache = newLruCache[int, int](2)
     check: cache.getOrPut(1,1) == 1
     check: 1 in cache
 
   test "getOption()":
-    let cache = newLRUCache[int,int](1)
+    let cache = newLruCache[int,int](1)
     check: cache.getOption(1).isNone
     cache[1] = 1
     check: cache.getOption(1) == some(1)
 
   test "isEmpty":
-    let cache = newLRUCache[int, int](2)
+    let cache = newLruCache[int, int](2)
     check: cache.isEmpty
     cache[1] = 1
     check: not cache.isEmpty
 
   test "isFull":
-    let cache = newLRUCache[int, int](1)
+    let cache = newLruCache[int, int](1)
     check: not cache.isFull
     cache[1] = 1
     check: cache.isFull
 
   test "clear":
-    let cache = newLRUCache[int, int](10)
+    let cache = newLruCache[int, int](10)
     check: cache.isEmpty
     cache[1] = 1
     check: not cache.isEmpty
@@ -112,7 +112,7 @@ suite "LRUCache":
     check: cache.isEmpty
 
   test "re-capacity dynamically":
-    let cache = newLRUCache[int, int](1)
+    let cache = newLruCache[int, int](1)
     cache[1] = 1
     cache[2] = 2 
     check: 1 notin cache
@@ -126,7 +126,7 @@ suite "LRUCache":
     
   test "README usage":
     # create a new LRU cache with initial capacity of 1 items
-    let cache = newLRUCache[int, string](1) 
+    let cache = newLruCache[int, string](1) 
 
     cache[1] = "a"
     cache[2] = "b"
