@@ -123,7 +123,39 @@ suite "LruCache":
 
     check: 1 in cache
     check: 2 in cache
+
+  test "string key":
+    let cache = newLruCache[string, int](10)
+
+    # put
+    for i in 1..10: cache[$i] = i
+    check: cache.len == 10  
+
+    # contains
+    for i in 1..10: check: $i in cache
+
+    # get
+    for i in 1..10: check: cache.get($i) == i
     
+    # getOrDefault
+    for i in 1..10: check: cache.getOrDefault($i, -1) == i
+    for i in 11..20: check: cache.getOrDefault($i, -1) == -1
+
+    # getOrPut
+    for i in 1..20: check: cache.getOrPut($i, i) == i
+
+    # getOption
+    for i in 1..10: check: cache.getOption($i).isNone
+    for i in 11..20: check: cache.getOption($i).isSome
+
+    # peek
+    for i in 1..10: check: $i notin cache
+    for i in 11..20: check: cache.peek($i) == i
+
+    # del
+    for i in 11..20: cache.del($i)
+    check: cache.len == 0
+
   test "README usage":
     # create a new LRU cache with initial capacity of 1 items
     let cache = newLruCache[int, string](1) 
