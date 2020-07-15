@@ -103,8 +103,8 @@ function main() {
       <li><a class="reference" href="#LruCache"
     title="LruCache[K; T] = ref object
   capacity: int
-  list: DoublyLinkedList[Node[T]]
-  table: Table[Hash, DoublyLinkedNode[Node[T]]]"><wbr />Lru<wbr />Cache<span class="attachedType"></span></a></li>
+  list: DoublyLinkedList[Node[K, T]]
+  table: Table[K, DoublyLinkedNode[Node[K, T]]]"><wbr />Lru<wbr />Cache<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -162,8 +162,8 @@ function main() {
 <a id="LruCache"></a>
 <dt><pre><a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
   <span class="Identifier">capacity</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">list</span><span class="Other">:</span> <span class="Identifier">DoublyLinkedList</span><span class="Other">[</span><span class="Identifier">Node</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">]</span>
-  <span class="Identifier">table</span><span class="Other">:</span> <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">Hash</span><span class="Other">,</span> <span class="Identifier">DoublyLinkedNode</span><span class="Other">[</span><span class="Identifier">Node</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">]</span><span class="Other">]</span>
+  <span class="Identifier">list</span><span class="Other">:</span> <span class="Identifier">DoublyLinkedList</span><span class="Other">[</span><span class="Identifier">Node</span><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">]</span>
+  <span class="Identifier">table</span><span class="Other">:</span> <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">DoublyLinkedNode</span><span class="Other">[</span><span class="Identifier">Node</span><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">]</span><span class="Other">]</span>
 </pre></dt>
 <dd>
 
@@ -246,14 +246,14 @@ Put value <tt class="docutils literal"><span class="pre">v</span></tt> in cache 
 
 </dd>
 <a id="get,LruCache[K,T],K"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#get%2CLruCache%5BK%2CT%5D%2CK"><span class="Identifier">get</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">K</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#get%2CLruCache%5BK%2CT%5D%2CK"><span class="Identifier">get</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">K</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 Alias of <tt class="docutils literal"><span class="pre">cache[key]</span></tt>
 
 </dd>
 <a id="put,LruCache[K,T],K,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#put%2CLruCache%5BK%2CT%5D%2CK%2CT"><span class="Identifier">put</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">K</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#put%2CLruCache%5BK%2CT%5D%2CK%2CT"><span class="Identifier">put</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">key</span><span class="Other">:</span> <span class="Identifier">K</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 Alias of <tt class="docutils literal"><span class="pre">cache[key] = val</span></tt>
@@ -304,7 +304,7 @@ Equivalent to <tt class="docutils literal"><span class="pre">cache.len == cache.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-07-15 02:09:52 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-07-15 02:32:23 UTC</small>
       </div>
     </div>
   </div>
