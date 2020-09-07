@@ -100,7 +100,11 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#LruCache"
+      <li><a class="reference" href="#LruCacheError"
+    title="LruCacheError = object of CatchableError"><wbr />Lru<wbr />Cache<wbr />Error<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#EmptyLruCacheError"
+    title="EmptyLruCacheError = object of LruCacheError"><wbr />Empty<wbr />Lru<wbr />Cache<wbr />Error<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#LruCache"
     title="LruCache[K; T] = ref object
   capacity: int
   list: DoublyLinkedList[Node[K, T]]
@@ -148,6 +152,20 @@ function main() {
 
   </ul>
 </li>
+<li>
+  <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#getMruKey%2CLruCache%5BK%2CT%5D"
+    title="getMruKey[K, T](cache: LruCache[K, T]): K"><wbr />get<wbr />Mru<wbr />Key<span class="attachedType">LruCache</span></a></li>
+  <li><a class="reference" href="#getMruValue%2CLruCache%5BK%2CT%5D"
+    title="getMruValue[K, T](cache: LruCache[K, T]): T"><wbr />get<wbr />Mru<wbr />Value<span class="attachedType">LruCache</span></a></li>
+  <li><a class="reference" href="#getLruKey%2CLruCache%5BK%2CT%5D"
+    title="getLruKey[K, T](cache: LruCache[K, T]): K"><wbr />get<wbr />Lru<wbr />Key<span class="attachedType">LruCache</span></a></li>
+  <li><a class="reference" href="#getLruValue%2CLruCache%5BK%2CT%5D"
+    title="getLruValue[K, T](cache: LruCache[K, T]): T"><wbr />get<wbr />Lru<wbr />Value<span class="attachedType">LruCache</span></a></li>
+
+  </ul>
+</li>
 
 </ul>
 
@@ -159,6 +177,20 @@ function main() {
   <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
+<a id="LruCacheError"></a>
+<dt><pre><a href="lrucache.html#LruCacheError"><span class="Identifier">LruCacheError</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">CatchableError</span></pre></dt>
+<dd>
+
+
+
+</dd>
+<a id="EmptyLruCacheError"></a>
+<dt><pre><a href="lrucache.html#EmptyLruCacheError"><span class="Identifier">EmptyLruCacheError</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="lrucache.html#LruCacheError"><span class="Identifier">LruCacheError</span></a></pre></dt>
+<dd>
+
+
+
+</dd>
 <a id="LruCache"></a>
 <dt><pre><a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">;</span> <span class="Identifier">T</span><span class="Other">]</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
   <span class="Identifier">capacity</span><span class="Other">:</span> <span class="Identifier">int</span>
@@ -281,17 +313,50 @@ Similar to <tt class="docutils literal"><span class="pre">get</span></tt>, but r
 
 </dd>
 <a id="isEmpty,LruCache[K,T]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#isEmpty%2CLruCache%5BK%2CT%5D"><span class="Identifier">isEmpty</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#isEmpty%2CLruCache%5BK%2CT%5D"><span class="Identifier">isEmpty</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 Equivalent to <tt class="docutils literal"><span class="pre">cache.len == 0</span></tt>
 
 </dd>
 <a id="isFull,LruCache[K,T]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#isFull%2CLruCache%5BK%2CT%5D"><span class="Identifier">isFull</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#isFull%2CLruCache%5BK%2CT%5D"><span class="Identifier">isFull</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-Equivalent to <tt class="docutils literal"><span class="pre">cache.len == cache.capacity</span></tt>
+Equivalent to <tt class="docutils literal"><span class="pre">cache.len == cache.capacity</span></tt> Raise <tt class="docutils literal"><span class="pre">EmptyLruCacheError</span></tt> if <tt class="docutils literal"><span class="pre">cache</span></tt> is empty.
+
+</dd>
+
+</dl></div>
+<div class="section" id="13">
+<h1><a class="toc-backref" href="#13">Funcs</a></h1>
+<dl class="item">
+<a id="getMruKey,LruCache[K,T]"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#getMruKey%2CLruCache%5BK%2CT%5D"><span class="Identifier">getMruKey</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">K</span></pre></dt>
+<dd>
+
+Return most recently used key. Raise <tt class="docutils literal"><span class="pre">EmptyLruCacheError</span></tt> if <tt class="docutils literal"><span class="pre">cache</span></tt> is empty.
+
+</dd>
+<a id="getMruValue,LruCache[K,T]"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#getMruValue%2CLruCache%5BK%2CT%5D"><span class="Identifier">getMruValue</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+Return most recently used value. Raise <tt class="docutils literal"><span class="pre">EmptyLruCacheError</span></tt> if <tt class="docutils literal"><span class="pre">cache</span></tt> is empty.
+
+</dd>
+<a id="getLruKey,LruCache[K,T]"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#getLruKey%2CLruCache%5BK%2CT%5D"><span class="Identifier">getLruKey</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">K</span></pre></dt>
+<dd>
+
+Return least recently used key. Raise <tt class="docutils literal"><span class="pre">EmptyLruCacheError</span></tt> if <tt class="docutils literal"><span class="pre">cache</span></tt> is empty.
+
+</dd>
+<a id="getLruValue,LruCache[K,T]"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#getLruValue%2CLruCache%5BK%2CT%5D"><span class="Identifier">getLruValue</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">cache</span><span class="Other">:</span> <a href="lrucache.html#LruCache"><span class="Identifier">LruCache</span></a><span class="Other">[</span><span class="Identifier">K</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+Return least recently used value. Raise <tt class="docutils literal"><span class="pre">EmptyLruCacheError</span></tt> if <tt class="docutils literal"><span class="pre">cache</span></tt> is empty.
 
 </dd>
 
@@ -304,7 +369,7 @@ Equivalent to <tt class="docutils literal"><span class="pre">cache.len == cache.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-07-15 02:32:23 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-09-07 11:10:21 UTC</small>
       </div>
     </div>
   </div>
