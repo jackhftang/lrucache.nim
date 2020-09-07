@@ -1,6 +1,10 @@
 import lists, tables, options
 
 type
+  LruCacheError* = object of CatchableError
+
+  EmptyLruCacheError* = object of LruCacheError
+
   # no need to use ref, since DoublyLinkedNode is already a ref
   Node[K,T] = object
     key: K
@@ -126,16 +130,42 @@ proc getOption*[K,T](cache: LruCache[K,T], key: K): Option[T] =
   if node.isNil: none(T)
   else: some(node.value.val)
 
-proc isEmpty*[K,T](cache: LruCache[K,T]): bool = 
+proc isEmpty*[K,T](cache: LruCache[K,T]): bool {.inline.} = 
   ## Equivalent to `cache.len == 0`
   cache.len == 0
 
-proc isFull*[K,T](cache: LruCache[K,T]): bool = 
+proc isFull*[K,T](cache: LruCache[K,T]): bool {.inline.} = 
   ## Equivalent to `cache.len == cache.capacity`
+  ## Raise `EmptyLruCacheError` if `cache` is empty.
   cache.len == cache.capacity
+
+func getMruKey*[K,T](cache: LruCache[K,T]): K =
+  ## Return most recently used key.
+  ## Raise `EmptyLruCacheError` if `cache` is empty.
+  if cache.isEmpty:
+    raise newException(EmptyLruCacheError, "Cannot get most recently used key from empty cache")
+  cache.list.head.value.key
+
+func getMruValue*[K,T](cache: LruCache[K,T]): T =
+  ## Return most recently used value.
+  ## Raise `EmptyLruCacheError` if `cache` is empty.
+  if cache.isEmpty:
+    raise newException(EmptyLruCacheError, "Cannot get most recently used value from empty cache")
+  cache.list.head.value.val
+
+func getLruKey*[K,T](cache: LruCache[K,T]): K =
+  ## Return least recently used key.
+  ## Raise `EmptyLruCacheError` if `cache` is empty.
+  if cache.isEmpty:
+    raise newException(EmptyLruCacheError, "Cannot get least recently used key from empty cache")
+  cache.list.tail.value.key
 
 func getLruValue*[K,T](cache: LruCache[K,T]): T =
   ## Return least recently used value.
-  ## `cache` may not be empty.
-  assert cache.len != 0
+  ## Raise `EmptyLruCacheError` if `cache` is empty.
+  if cache.isEmpty:
+    raise newException(EmptyLruCacheError, "Cannot get least recently used value from empty cache")
   cache.list.tail.value.val
+
+
+   

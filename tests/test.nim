@@ -124,6 +124,17 @@ suite "LruCache":
     check: 1 in cache
     check: 2 in cache
 
+  test "getLruKey":
+    let cache = newLruCache[int, int](2)
+    cache[1] = 10
+    check: cache.getLruKey == 1
+    cache[2] = 20
+    check: cache.getLruKey == 1
+    check: cache[1] == 10
+    check: cache.getLruKey == 2
+    cache[3] = 30
+    check: cache.getLruKey == 1 # overflow
+
   test "getLruValue":
     let cache = newLruCache[int, int](2)
     cache[1] = 10
@@ -134,6 +145,28 @@ suite "LruCache":
     check: cache.getLruValue == 20
     cache[3] = 30
     check: cache.getLruValue == 10
+
+  test "getMruKey":
+    let cache = newLruCache[int, int](2)
+    cache[1] = 10
+    check: cache.getMruKey == 1
+    cache[2] = 20
+    check: cache.getMruKey == 2
+    check: cache[1] == 10
+    check: cache.getMruKey == 1
+    cache[3] = 30
+    check: cache.getMruKey == 3
+
+  test "getMruValue":
+    let cache = newLruCache[int, int](2)
+    cache[1] = 10
+    check: cache.getMruValue == 10
+    cache[2] = 20
+    check: cache.getMruValue == 20
+    check: cache[1] == 10
+    check: cache.getMruValue == 10
+    cache[3] = 30
+    check: cache.getMruValue == 30
 
   test "README usage":
     # create a new LRU cache with initial capacity of 1 items
