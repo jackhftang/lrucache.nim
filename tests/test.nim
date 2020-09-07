@@ -123,7 +123,18 @@ suite "LruCache":
 
     check: 1 in cache
     check: 2 in cache
-    
+
+  test "getLruValue":
+    let cache = newLruCache[int, int](2)
+    cache[1] = 10
+    check: cache.getLruValue == 10
+    cache[2] = 20
+    check: cache.getLruValue == 10
+    check: cache[1] == 10
+    check: cache.getLruValue == 20
+    cache[3] = 30
+    check: cache.getLruValue == 10
+
   test "README usage":
     # create a new LRU cache with initial capacity of 1 items
     let cache = newLruCache[int, string](1) 

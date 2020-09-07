@@ -134,3 +134,8 @@ proc isFull*[K,T](cache: LruCache[K,T]): bool =
   ## Equivalent to `cache.len == cache.capacity`
   cache.len == cache.capacity
 
+func getLruValue*[K,T](cache: LruCache[K,T]): T =
+  ## Return least recently used value.
+  ## `cache` may not be empty.
+  assert cache.len != 0
+  cache.list.tail.value.val
