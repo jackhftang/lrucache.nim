@@ -15,22 +15,14 @@ type
     list: DoublyLinkedList[Node[K,T]]
     table: Table[K, DoublyLinkedNode[Node[K,T]]]
 
-
-template rightSize(cap): untyped {.dirty.}=
-  # for backward compatability
-  when declared(tables.rightSize) and (NimMajor,NimMinor) < (1,4):
-    tables.rightSize(cap)
-  else:
-    cap
-
 proc newLruCache*[K,T](capacity: int): LruCache[K,T] =
   ## Create a new Least-Recently-Used (LRU) cache that store the last `capacity`-accessed items.
   LruCache[K,T](
     capacity: capacity,
     list: initDoublyLinkedList[Node[K,T]](),
-    table: initTable[K, DoublyLinkedNode[Node[K,T]]](rightSize(capacity))
+    table: initTable[K, DoublyLinkedNode[Node[K,T]]]( rightSize(capacity) )
   )
-    
+
 proc resize[K,T](cache: LruCache[K,T]) =
   while cache.len > cache.capacity:
     let t = cache.list.tail
