@@ -63,13 +63,12 @@ Modified by Boyd Greenfield and narimiran
 .theme-switch-wrapper {
   display: flex;
   align-items: center;
-}
 
-.theme-switch-wrapper em {
-  margin-left: 10px;
-  font-size: 1rem;
+  em {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
 }
-
 .theme-switch {
   display: inline-block;
   height: 22px;
@@ -154,12 +153,10 @@ body {
   margin-left: 0; }
 
 .three.columns {
-  width: 22%;
-  line-break: anywhere;
-}
+  width: 19%; }
 
 .nine.columns {
-  width: 77.0%; }
+  width: 80.0%; }
 
 .twelve.columns {
   width: 100%;
@@ -422,7 +419,7 @@ ul.simple-boot li {
 }
 
 ol.simple > li, ul.simple > li {
-  margin-bottom: 0.2em;
+  margin-bottom: 0.25em;
   margin-left: 0.4em }
 
 ul.simple.simple-toc > li {
@@ -441,18 +438,8 @@ ul.simple-toc > li {
 
 ul.simple-toc-section {
   list-style-type: circle;
-  margin-left: 0.8em;
+  margin-left: 1em;
   color: #6c9aae; }
-
-ul.nested-toc-section {
-  list-style-type: circle;
-  margin-left: -0.75em;
-  color: var(--text);
-}
-
-ul.nested-toc-section > li {
-  margin-left: 1.25em;
-}
 
 
 ol.arabic {
@@ -594,7 +581,6 @@ table th {
 
 table th.docinfo-name {
     background-color: transparent;
-    text-align: right;
 }
 
 table tr:hover {
@@ -658,7 +644,7 @@ div.topic {
   margin: 2em; }
 
 div.search_results {
-  background-color: var(--third-background);
+  background-color: antiquewhite;
   margin: 3em;
   padding: 1em;
   border: 1px solid #4d4d4d;
