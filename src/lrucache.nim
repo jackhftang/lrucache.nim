@@ -30,6 +30,10 @@ proc newLruCache*[K,T](capacity: int): LruCache[K,T] =
     table: initTable[K, DoublyLinkedNode[Node[K,T]]]( correctSize(capacity) )
   )
 
+proc len*[K,T](cache: LruCache[K,T]): int =
+  ## Return number of key in cache
+  cache.table.len
+
 proc resize[K,T](cache: LruCache[K,T]) =
   while cache.len > cache.capacity:
     let t = cache.list.tail
@@ -55,10 +59,6 @@ proc `capacity=`*[K,T](cache: LruCache[K,T], capacity: int) =
   ## Resize the maximum capacity of cache
   cache.capacity = capacity
   cache.resize()
-
-proc len*[K,T](cache: LruCache[K,T]): int = 
-  ## Return number of key in cache
-  cache.table.len
 
 proc contains*[K,T](cache: LruCache[K,T], key: K): bool =
   ## Check whether key in cache. Does *NOT* update recentness.
