@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.1.3"
+version       = "1.1.4"
 author        = "Jack Tang"
 description   = "Least recently used (LRU) cache"
 license       = "MIT"
